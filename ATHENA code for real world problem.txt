@@ -1,0 +1,18 @@
+#Launch Athena 
+go athena  
+# Define mesh 
+line x loc=0.0 spac=0.01  
+line x loc=8.0 spac=0.01  
+line y loc=0.0 spac=0.01  
+line y loc=8.0 spac=0.01 
+
+# Define diffusion parameters 
+initialize silicon orient=100 c.phos=4.0e15 one.d  
+diffusion time=147.6 temperature=1150 pressure=1.0 hcl.pc=0 c.boron=2.0e19
+extract name="xj" xj material="Silicon" mat.occno=1 x.val=0 junc.occno=1 
+extract name="rho" sheet.res material="Silicon" mat.occno=1 x.val=0 region.occno=1 
+extract name="Ns" surf.conc impurity="Phosphorus" material="Silicon" mat.occno=1 x.val=0 
+# Save results 
+structure outfile=predeposition.str  
+#Plot results  
+tonyplot predeposition.str
